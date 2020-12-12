@@ -1,5 +1,5 @@
 import unittest
-import sys
+#import sys
 #sys.path.append("C:\\Users\\nana-\\data_engineer_pjt")
 
 from src.recommendations import recommendations
