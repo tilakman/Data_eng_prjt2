@@ -7,12 +7,11 @@ def tweets(sentence):
 	tweets_block = ""
 	if sentence:
 		res= recommendations(sentence)
-		for index in res:
-			#tweets_block += "<tr id=" + str(index) + " > <td>" + str(index) + "</td> <td>" + res[index] + "</td> </tr>"
-			print(index)
+		for index, row in res.iterrows():
+			tweets_block += "<tr id=" + str(index) + " > <td>" + str(index) + "</td> <td>" + row['text'] + "</td> </tr>"
 
 
-	print(tweets_block)	
+
 	return render_template('index.html', tweets=tweets_block)
 
 @app.route('/', methods=['GET','POST'])
