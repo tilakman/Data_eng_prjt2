@@ -1,31 +1,15 @@
 import pickle
 import pandas as pd
-import numpy as np
 import nltk
 nltk.download('stopwords')
 from nltk.corpus import stopwords
-from sklearn.metrics.pairwise import linear_kernel
-from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.feature_extraction.text import TfidfVectorizer
 from nltk.tokenize import RegexpTokenizer
 import re
-import string
-import random
-from PIL import Image
-import requests
-from io import BytesIO
-import matplotlib.pyplot as plt
 from sklearn.metrics.pairwise import cosine_similarity
-from gensim.models import Word2Vec
-from gensim.models.phrases import Phrases, Phraser
-from matplotlib import pyplot
-from gensim.models import KeyedVectors
-
-from pathlib import Path
 
 
 
-with open('../models/google_model.pickle', 'rb') as data:
+with open('models/google_model.pickle', 'rb') as data:
     google_model = pickle.load(data)
 
 
@@ -54,7 +38,7 @@ def remove_punctuation(text):
 
 
 
-df = pd.read_csv("../data/tweets_1.csv")
+df = pd.read_csv("data/tweets_1.csv")
 
 df['text'] = df['text'].astype(str)
 df['cleaned'] = df['text'].apply(_removeNonAscii)
