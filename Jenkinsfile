@@ -20,8 +20,6 @@ pipeline {
             sh 'docker run -p 5000:5000 -d --name app_c app'
           }
         }
-      }
-    }
 
     stage('Testing') {
       steps {
