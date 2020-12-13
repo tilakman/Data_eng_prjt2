@@ -31,7 +31,6 @@ class FlaskTest(unittest.TestCase):
         }
 
         response = requests.post('http://localhost:5000',data=payload)
-
         soup = BeautifulSoup(response.text, "html.parser")
         
         table=soup.find_all("tr")[:2]
