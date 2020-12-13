@@ -3,7 +3,7 @@ def build_app(){
 }
 
 def test_app(){
-  bat 'python test_app.py'
+  bat 'C:/Users/nana-/Anaconda3/python.exe test_app.py'
 }
 
 def down_app(){
