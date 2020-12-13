@@ -35,7 +35,9 @@ class FlaskTest(unittest.TestCase):
         
         table=soup.find_all("tr")[:2]
         firstrow=str(table[1])
-        result = "<tr id=\"7135\"> <td>7135</td> <td>\"@Natasha_tut13: @realDonaldTrump  I like to read your tweets and I am delighted with you, intelligent, decent, strong man!\"  Thanks.</td> </tr>"
+
+        print(firstrow)
+        result = "<tr><td>7135</td><td>\"@Natasha_tut13: @realDonaldTrump  I like to read your tweets and I am delighted with you, intelligent, decent, strong man!\"  Thanks.</td></tr>"
         
         self.assertEqual(result, firstrow)
 
