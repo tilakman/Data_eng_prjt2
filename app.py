@@ -8,7 +8,7 @@ def tweets(sentence):
 	if sentence:
 		res= recommendations(sentence)
 		for index, row in res.iterrows():
-			tweets_block += "<tr id=" + str(index) + " > <td>" + str(index) + "</td> <td>" + row['text'] + "</td> </tr>"
+			tweets_block += "<tr><td>" + str(index) + "</td><td>" + row['text'] + "</td></tr>"
 
 
 
