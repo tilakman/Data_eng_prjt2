@@ -24,7 +24,7 @@ pipeline {
     stage('Testing') {
       steps {
         echo 'Deploying Now'
-        bat 'C:/Users/nana-/Anaconda3/python.exe test_app.py'
+        bat 'python test_app.py'
       }
     }
 
