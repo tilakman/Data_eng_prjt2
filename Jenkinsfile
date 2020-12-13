@@ -1,51 +1,50 @@
-pipeline {
+def groovyfile
+pipeline{
   agent any
   stages {
-    stage('Build') {
-      steps {
-        echo 'Building Docker Images'
-        bat 'docker build -t app .'
+	  stage ('Build Scripe'){
+	  	steps{
+			script{
+				 def filename = 'jenkins.' + env.BRANCH_NAME + '.groovy'
+				 groovyfile = load filename
+			}
+		}
+	  }
+    
+    stage('Build Flask app'){
+      steps{
+        script{
+          groovyfile.build_app()
+        }
       }
     }
-
-    stage('Test') {
-          steps {
-            echo 'Starting docker services'
-          }
+    stage('Run docker images'){
+      steps{
+        script{
+          groovyfile.run_app()
         }
-
-        stage('Run Docker Image') {
-          steps {
-            echo 'Running Flask app'
-            bat 'docker run -p 5000:5000 -d --name app_c app'
-          }
-        }
-
-    stage('Testing') {
-      steps {
-        echo 'Deploying Now'
-        bat 'C:/Users/nana-/Anaconda3/python.exe test_app.py'
       }
     }
-
-    stage('Stop Containers') {
-      parallel {
-        stage('Stop Containers') {
-          steps {
-            bat 'docker rm -f app_c'
-            bat 'docker rmi app'
-          }
+    stage('Testing'){
+      steps{
+        script{
+          groovyfile.test_app()
         }
-
-        stage('error') {
-          steps {
-            bat '#docker stop redis'
-            bat '#docker rm redis'
-          }
-        }
-
       }
     }
-
+    stage('Docker images down'){
+      steps{
+        script{
+          groovyfile.down_app()
+        }
+      }
+	  }
+    stage('creating release branch'){
+      steps{
+		    script{
+          groovyfile.release_app()
+		    }
+      }
+    }
   }
 }
