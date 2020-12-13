@@ -4,7 +4,7 @@ pipeline {
     stage('Build') {
       steps {
         echo 'Building Docker Images'
-        sh 'docker build -t app .'
+        bat 'docker build -t app .'
       }
     }
 
@@ -17,14 +17,14 @@ pipeline {
         stage('Run Docker Image') {
           steps {
             echo 'Running Flask app'
-            sh 'docker run -p 5000:5000 -d --name app_c app'
+            bat 'docker run -p 5000:5000 -d --name app_c app'
           }
         }
 
     stage('Testing') {
       steps {
         echo 'Deploying Now'
-        sh 'python test_app.py'
+        bat 'python test_app.py'
       }
     }
 
@@ -32,15 +32,15 @@ pipeline {
       parallel {
         stage('Stop Containers') {
           steps {
-            sh 'docker rm -f app_c'
-            sh 'docker rmi app'
+            bat 'docker rm -f app_c'
+            bat 'docker rmi app'
           }
         }
 
         stage('error') {
           steps {
-            sh '#docker stop redis'
-            sh '#docker rm redis'
+            bat '#docker stop redis'
+            bat '#docker rm redis'
           }
         }
 
