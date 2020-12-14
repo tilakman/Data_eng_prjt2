@@ -1,5 +1,5 @@
 def build_app(){
-  bat 'docker-compose up --build -d'
+  bat 'docker-compose up -d --build'
 }
 
 def test_app(){
