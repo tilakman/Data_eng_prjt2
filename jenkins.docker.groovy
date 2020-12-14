@@ -1,5 +1,5 @@
 def build_app(){
-  bat 'docker-compose up -d'
+  bat 'docker-compose up -d --build'
 }
 
 def test_app(){
@@ -8,13 +8,6 @@ def test_app(){
 
 def down_app(){
   bat 'docker-compose down'
-}
-
-def release_app(){
-  echo 'branch into release'
-}
-
-def live_app(){
 }
 
 return this

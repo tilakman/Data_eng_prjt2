@@ -19,12 +19,21 @@ pipeline{
         }
       }
     }
-    stage('test model'){
+
+
+    stage('Testing'){
       steps{
         script{
           groovyfile.test_app()
         }
       }
     }
+    stage('Docker images down'){
+      steps{
+        script{
+          groovyfile.down_app()
+        }
+      }
+	}
     }
 }
