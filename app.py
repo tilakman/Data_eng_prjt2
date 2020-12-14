@@ -7,8 +7,9 @@ def tweets(sentence):
 	tweets_block = ""
 	if sentence:
 		res= recommendations(sentence)
+		print(res)
 		for index, row in res.iterrows():
-			tweets_block += "<tr><td>" + str(index) + "</td><td>" + row['text'] + "</td></tr>"
+			tweets_block += "<tr><td>" + str(row['id']) + "</td><td>" + row['text'] + "</td></tr>"
 
 
 
@@ -17,9 +18,9 @@ def tweets(sentence):
 @app.route('/', methods=['GET','POST'])
 def index():
 	if request.method == 'POST':
-		output = request.form 
+		output = request.form
 		return tweets(output['sentence'])
-
+	
 	return render_template('index.html')
 
 if __name__ == '__main__':

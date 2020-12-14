@@ -1,18 +1,8 @@
-import pandas as pd
 import string
-import re
 import pickle
+import pandas as pd
 import preprocessor as p
-import nltk
-from nltk.corpus import stopwords
-from nltk.stem import PorterStemmer
-
-from sklearn.feature_extraction.text import TfidfTransformer
-from sklearn.feature_extraction.text import TfidfVectorizer
-
 from sklearn.metrics.pairwise import linear_kernel
-
-
 
 with open('models/vectors.pickle', 'rb') as data:
     vectors = pickle.load(data)
@@ -20,8 +10,10 @@ with open('models/vectors.pickle', 'rb') as data:
 with open('models/vectorizer.pickle', 'rb') as data:
     vectorizer = pickle.load(data)
     
-with open('models/df_tweet.pickle', 'rb') as data:
-    df = pickle.load(data)
+# with open('models/df_tweet.pickle', 'rb') as data:
+#     df = pickle.load(data)
+
+df=pd.read_csv("data/tweets_1.csv")
 
 def preprocessing(text):
     text = p.clean(text)

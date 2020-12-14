@@ -1,5 +1,4 @@
 flask
-pandas
-nltk
 sklearn
-gensim
+pandas
+tweet-preprocessor
