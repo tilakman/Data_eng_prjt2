@@ -10,11 +10,4 @@ def down_app(){
   bat 'docker-compose down'
 }
 
-def release_app(){
-  echo 'branch into release'
-}
-
-def live_app(){
-}
-
 return this
