@@ -1,90 +1,45 @@
-import pickle
 import pandas as pd
-import nltk
-#nltk.download('stopwords')
-from nltk.corpus import stopwords
-from nltk.tokenize import RegexpTokenizer
+import string
 import re
-from sklearn.metrics.pairwise import cosine_similarity
+import pickle
+import preprocessor as p
+import nltk
+from nltk.corpus import stopwords
+from nltk.stem import PorterStemmer
+
+from sklearn.feature_extraction.text import TfidfTransformer
+from sklearn.feature_extraction.text import TfidfVectorizer
+
+from sklearn.metrics.pairwise import linear_kernel
 
 
 
-with open('models/google_model.pickle', 'rb') as data:
-    google_model = pickle.load(data)
+with open('models/vectors.pickle', 'rb') as data:
+    vectors = pickle.load(data)
+    
+with open('models/vectorizer.pickle', 'rb') as data:
+    vectorizer = pickle.load(data)
+    
+with open('models/df_tweet.pickle', 'rb') as data:
+    df = pickle.load(data)
 
-
-def _removeNonAscii(s):
-    return "".join(i for i in s if  ord(i)<128)
-
-def make_lower_case(text):
-    return text.lower()
-
-def remove_stop_words(text):
-    text = text.split()
-    stops = set(stopwords.words("english"))
-    text = [w for w in text if not w in stops]
-    text = " ".join(text)
+def preprocessing(text):
+    text = p.clean(text)
+    text = [i for i in text.split() if (i not in string.punctuation)]
     return text
 
-def remove_html(text):
-    html_pattern = re.compile('<.*?>')
-    return html_pattern.sub(r'', text)
+def vectorizing(text,vectorizer):
+    text_vector = vectorizer.transform([str(text)])
+    return text_vector
 
-def remove_punctuation(text):
-    tokenizer = RegexpTokenizer(r'\w+')
-    text = tokenizer.tokenize(text)
-    text = " ".join(text)
-    return text
-
-
-
-df = pd.read_csv("data/tweets_1.csv")
-
-df['text'] = df['text'].astype(str)
-df['cleaned'] = df['text'].apply(_removeNonAscii)
-
-df['cleaned'] = df.cleaned.apply(func = make_lower_case)
-df['cleaned'] = df.cleaned.apply(func = remove_stop_words)
-df['cleaned'] = df.cleaned.apply(func=remove_punctuation)
-df['cleaned'] = df.cleaned.apply(func=remove_html)
-
-
-# genere average word2dec pour chaque champ
-def vectors(x):
-    
-    
-    global word_embeddings
-    word_embeddings = []
-
-    
-    for line in df['cleaned']:
-        avgword2vec = None
-        count = 0
-        for word in line.split():
-            if word in google_model.wv.vocab:
-                count += 1
-                if avgword2vec is None:
-                    avgword2vec = google_model[word]
-                else:
-                    avgword2vec = avgword2vec + google_model[word]
-                
-        if avgword2vec is not None:
-            avgword2vec = avgword2vec / count
-        
-            word_embeddings.append(avgword2vec)
-
-
+def similar_tweets(text_vector, vectors,df):
+    cosine_similarities = linear_kernel(text_vector, vectors).flatten()
+    related_docs_indices = cosine_similarities.argsort()[:-21:-1]
+    tweets = df[['text','id']].loc[related_docs_indices] 
+    return tweets
 
 def recommendations(text):
-    vectors(df)
-    cosine_similarities = cosine_similarity(word_embeddings, word_embeddings)
-    books = df[['text', 'id']]
-    indices = pd.Series(df.index, index = df['text']).drop_duplicates()  
-    idx=df[df['text']==text].index.tolist()[0]
-    sim_scores = list(enumerate(cosine_similarities[idx]))
-    sim_scores = sorted(sim_scores, key = lambda x: x[1], reverse = True)
-    sim_scores = sim_scores[1:21]
-    book_indices = [i[0] for i in sim_scores]
-    recommend = books.iloc[book_indices]
-    #print(sim_scores)
-    return(recommend)
+    text_preprocessed = preprocessing(text)
+    text_vector = vectorizing(text_preprocessed,vectorizer)
+    tweets = similar_tweets(text_vector, vectors,df)
+    return tweets
