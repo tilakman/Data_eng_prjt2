@@ -22,7 +22,6 @@ def tweets(sentence):
 		REQUESTS.inc()
 		INPROGRESS.inc()
 		start=time.time()
-		time.sleep(5)
 		res= recommendations(sentence)
 		for index, row in res.iterrows():
 			tweets_block += "<tr><td>" + str(row['id']) + "</td><td>" + row['text'] + "</td></tr>"
