@@ -11,7 +11,7 @@ from src.recommendations import recommendations
 
 class FlaskTest(unittest.TestCase):
     def setUp(self):
-        self.sentence="I will be re-tweeting some of your better, most imaginative and hopefully insightful tweets. Make them good (great)! Important stuff."
+        self.sentence="hi"
   
 
     def tearDown(self):

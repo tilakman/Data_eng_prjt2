@@ -14,7 +14,7 @@ from src.recommendations import recommendations
 
 class FlaskTest(unittest.TestCase):
     def setUp(self):
-        self.sentence="I will be re-tweeting some of your better, most imaginative and hopefully insightful tweets. Make them good (great)! Important stuff."
+        self.sentence="hi"
   
 
     def tearDown(self):
@@ -37,8 +37,8 @@ class FlaskTest(unittest.TestCase):
         firstrow=str(table[1])
 
         print(firstrow)
-        result = "<tr><td>7135</td><td>\"@Natasha_tut13: @realDonaldTrump  I like to read your tweets and I am delighted with you, intelligent, decent, strong man!\"  Thanks.</td></tr>"
-        
+        result = "<tr><td>274565038050783232</td><td>@sagethelaxbro  Hi Sage</td></tr>"
+
         self.assertEqual(result, firstrow)
 
 if __name__=='__main__':
