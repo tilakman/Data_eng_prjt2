@@ -19,4 +19,4 @@
 - `python test_recommendations.py` to test the model 
 
 ### Running Grafana :
-1st Step: Run following files 'promoetheus.exe' , 'alermanager.exe' and 'windows_exporter.exe'
+1st Step: Run following files 'prometheus.exe' , 'alermanager.exe' and 'windows_exporter.exe'
