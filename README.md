@@ -17,3 +17,6 @@
 ### Running tests  :
 - `python test_app.py` to test the webapp
 - `python test_recommendations.py` to test the model 
+
+### Running Grafana :
+1st Step: Run following files 'promoetheus.exe' , 'alermanager.exe' and 'windows_exporter.exe'
