@@ -10,7 +10,7 @@ class WebsiteTestUser(HttpUser):
 
     def on_stop(self):
         """ on_stop is called when the TaskSet is stopping """
-        print ('CEST FINI')
+        pass
 
     @task(1)
     def hello_world(self):

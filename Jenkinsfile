@@ -35,5 +35,12 @@ pipeline{
         }
       }
 	}
+  stage('merge with release branch'){
+        steps{
+		script{
+          groovyfile.release_app()
+		}
+        }
+      }
     }
 }
