@@ -27,14 +27,3 @@ def live_app(){
 }
 
 return this
-
-
-
-
-
-
-def down_app(){
-  bat 'docker-compose down'
-}
-
-return this
