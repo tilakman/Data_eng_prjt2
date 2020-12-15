@@ -26,5 +26,12 @@ pipeline{
         }
       }
     }
+    stage('merge with develop branch'){
+      steps{
+        script{
+          groovyfile.release_app()
+        }
+      }
+    }
     }
 }
