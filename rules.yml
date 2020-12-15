@@ -1,0 +1,24 @@
+
+groups:
+  - name: example
+    rules:
+    - alert: RequestLoad
+      expr: twitter_inprogress > 6
+      for: 2s
+
+    - alert: InstanceDown
+      annotations:
+      expr: up{job="twitter"} == 0
+      for: 1m
+      labels:
+
+    - alert: WindowsHostOutOfMemory
+      expr: windows_os_physical_memory_free_bytes{job="node_exporter"} / windows_cs_physical_memory_bytes{job="node_exporter"} < 0.1
+      labels:
+      annotations:
+
+    - alert: WindowsHostCpuUsage
+      expr: 100 - (avg by (instance) (irate(windows_cpu_time_total{job="node_exporter",mode="idle"}[5m])) * 100) > 80
+      for: 5m
+      labels:
+      annotations:
