@@ -3,8 +3,7 @@ def build_app(){
 }
 
 def stress_test(){
-    echo 'manual stress test, go to http://localhost:8089/'
-    bat 'locust -f locustfile.py'
+    echo 'manual stress test, launch locust -f locustfile.py and go to http://localhost:8089/'
 }
 
 def user_acceptance(){
