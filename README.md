@@ -21,4 +21,5 @@
 ### Running Grafana :
 - 1st Step: Run following files 'prometheus.exe' , 'alermanager.exe' and 'windows_exporter.exe'
 - 2nd Step: Verify that you can access the webapp on `http://localhost:5000` and `http://localhost:9090`
-- 3rd Step:
+- 3rd Step: Go into 'http://localhost:3000' then access to Configuration then Data Source.
+- 4th Step: 
