@@ -7,7 +7,7 @@ def e2e_test(){
   bat 'C:/Users/nana-/Anaconda3/python.exe test_app.py'
   bat 'C:/Users/nana-/Anaconda3/python.exe test_recommendations.py'
 }
-}
+
 def user_acceptance(){
   input "proceed with deployment to live?"
 }
