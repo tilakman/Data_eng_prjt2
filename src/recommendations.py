@@ -10,9 +10,6 @@ with open('models/vectors.pickle', 'rb') as data:
 with open('models/vectorizer.pickle', 'rb') as data:
     vectorizer = pickle.load(data)
     
-# with open('models/df_tweet.pickle', 'rb') as data:
-#     df = pickle.load(data)
-
 df=pd.read_csv("data/tweets_1.csv")
 
 def preprocessing(text):
