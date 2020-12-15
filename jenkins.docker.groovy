@@ -10,4 +10,8 @@ def down_app(){
   bat 'docker-compose down'
 }
 
+def release_app(){
+    echo 'you can merge the docker branch on the develop branch'
+}
+
 return this

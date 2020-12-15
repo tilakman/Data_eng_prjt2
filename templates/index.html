@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Twitter</title>
+    <title>Twitter</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
+
 <body>
 <form method="POST" action="" >
     <center>
@@ -14,11 +16,11 @@
 </form>
 
 <center>
-    <table border="1">
+    <table class="styled-table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th> Tweets result </th>
+                <th>ID</th>
+                <th> TWEETS </th>
             </tr>
         </thead>
         <tbody>
