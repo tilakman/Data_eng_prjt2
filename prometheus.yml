@@ -42,3 +42,7 @@ scrape_configs:
 
     static_configs:
     - targets: ['localhost:8010']
+
+  - job_name: 'cAdvisor'
+    static_configs:
+    - targets: ['localhost:8082']
