@@ -38,7 +38,7 @@ pipeline{
   stage('merge with develop branch'){
       steps{
         script{
-          groovyfile.down_app()
+          groovyfile.release_app()
         }
       }
 	}
