@@ -18,7 +18,7 @@ def test_app(){
 }
 
 def down_app(){
-  sh 'docker-compose down'
+  bat 'docker-compose down'
 }
 
 
