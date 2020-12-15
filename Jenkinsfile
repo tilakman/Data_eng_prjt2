@@ -1,7 +1,7 @@
 def groovyfile
 pipeline{
   agent any
-
+  
   stages {
 	  stage ('Build Scripe'){
 	  	steps{
@@ -10,16 +10,16 @@ pipeline{
 				 groovyfile = load filename
 			}
 		}
-	}
-
-    stage('train model'){
+	  }
+    
+    stage('Build Flask app'){
       steps{
         script{
           groovyfile.build_app()
         }
       }
     }
-
+  
 
     stage('Testing'){
       steps{
