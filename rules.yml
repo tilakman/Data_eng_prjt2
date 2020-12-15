@@ -3,7 +3,7 @@ groups:
   - name: example
     rules:
     - alert: RequestLoad
-      expr: flask_twitter_webapp_calls_total > 10
+      expr: twitter_calls_total> 10
       for: 2s
     - alert: InstanceDown
       expr: up == 0
