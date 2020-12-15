@@ -3,7 +3,7 @@ groups:
   - name: example
     rules:
     - alert: RequestLoad
-      expr: twitter_calls_total > 10
+      expr: twitter_inprogress > 6
       for: 2s
 
     - alert: InstanceDown
