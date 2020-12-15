@@ -6,16 +6,12 @@ groups:
       expr: twitter_calls_total > 10
       for: 2s
 
-
     - alert: InstanceDown
-      # Annotation — additional informational labels to store more information
       annotations:
       title: ‘Instance {{ $labels.instance }} down’
       description: ‘{{ $labels.instance }} has been down for more than 1 minute.’
-      # Condition for alerting
       expr: up{job="twitter"} == 0
       for: 1m
-      # Labels — additional labels to be attached to the alert
       labels:
       severity: ‘critical’
 
@@ -26,8 +22,6 @@ groups:
       annotations:
       summary: "Windows Host out of memory (instance {{ $labels.instance }})"
       description: "Node memory is filling up (< 10% left)\n VALUE = {{ $value }}\n LABELS: {{ $labels }}"
-
-
 
     - alert: WindowsHostCpuUsage
       expr: 100 - (avg by (instance) (irate(windows_cpu_time_total{job="node_exporter",mode="idle"}[5m])) * 100) > 80
