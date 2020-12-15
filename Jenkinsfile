@@ -33,7 +33,7 @@ pipeline{
         }
       }
 	}
-stage('Going live'){
+stage('pushin to master and going live'){
         steps{
 		script{
           groovyfile.live_app()
